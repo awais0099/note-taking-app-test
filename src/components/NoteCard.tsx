@@ -1,7 +1,7 @@
 import { Card, Stack } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import style from './NoteList.module.css';
-import Badge from 'react-bootstrap/esm/Badge';
+import Badge from 'react-bootstrap/Badge';
 import { Tag } from '../App';
 
 type simplifiedNote = {

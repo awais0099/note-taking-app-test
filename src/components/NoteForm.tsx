@@ -22,7 +22,7 @@ function NoteForm({onSubmit, onAddTag, tags}: NoteFormProps) {
 	const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 	const navigate = useNavigate();
 
-	console.log({tags});
+	// console.log({tags});
 
 	function handleSubmit(e: FormEvent) {
 		e.preventDefault();

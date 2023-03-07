@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import NewNote from './components/NewNote';
-import { FormEvent, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {useLocalStorage} from './hooks/useLocalStorage';
 import { v4 as uuidV4 } from 'uuid';
 import NoteList from './components/NoteList';
