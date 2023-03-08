@@ -34,7 +34,7 @@ function NoteForm({onSubmit, onAddTag, tags}: NoteFormProps) {
 		navigate("..");
 	}
 
-	console.log({selectedTags});
+	// console.log({selectedTags});
 
 	return (
 		<Form onSubmit={handleSubmit}>

@@ -4,6 +4,9 @@ import user from "@testing-library/user-event";
 import NewNote from "./components/NewNote";
 import { NoteData, Tag } from "./App";
 import { BrowserRouter } from "react-router-dom";
+import { v4 as uuidV4 } from 'uuid';
+import NoteCard from './components/NoteCard';
+import App from './App';
 
 test('rendering of NewNote component', () => {
 
@@ -37,8 +40,7 @@ test('rendering of NewNote component', () => {
   expect(textareaInput).toBeInTheDocument();
 });
 
-test('entering data', () => {
-
+test('entering data', async () => {
   const mockfun = jest.fn();
 
   window.history.pushState({}, "", "/new");
@@ -68,15 +70,44 @@ test('entering data', () => {
 
   const textareaInput = screen.getByRole('textbox', {
     name: "Body"
-  })
+  });
+
   user.click(textareaInput);
   user.keyboard('i am test');
 
   const saveButton = screen.getByRole('button', {
     name: 'Save'
   });
+
   user.click(saveButton);
   expect(mockfun).toHaveBeenCalled();
-  // console.log(selectelement);
-  // expect(mockfun).toHaveBeenCalledWith({ title: 'i m test', markdown: 'i am test', tags: [{id: 'f9287059-55ad-4746-a06c-ad7467f57b22', label:'a'}]});
-})
+});
+
+test('rendering list', async () => {
+  const note = {id: '1', title: 'title', tags: [{id: '13', label: 'a'}, {id: '23', label: 'b'}]};
+
+  window.history.pushState({}, "", "/");
+
+  const {container } = render(
+    <BrowserRouter>
+        <NoteCard id={note.id} title={note.title} tags={note.tags} />
+    </BrowserRouter>
+  );
+  const card = container.querySelector('.card-body');
+  expect(card).toBeInTheDocument();
+  screen.debug();
+});
+
+test('search note', async () => {
+  const note = {id: '1', title: 'title', tags: [{id: '13', label: 'a'}, {id: '23', label: 'b'}]};
+
+  window.history.pushState({}, "", "/");
+
+  const {container } = render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+  );
+
+  screen.debug();
+});
